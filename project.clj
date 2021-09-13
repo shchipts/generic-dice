@@ -7,4 +7,4 @@
             :url "http://opensource.org/licenses/MIT"}
   :dependencies [[org.clojure/clojure "1.10.3"]
                  [org.iiasa/utilities-clj "1.1.0"]]
-  :main nil)
+  :main ^:skip-aot generic-dice.core)
