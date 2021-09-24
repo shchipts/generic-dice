@@ -129,11 +129,14 @@ projections based on Leimbach et al. (2017) (unitless)"
      (get-labor ssp))))
 
 (defn volume
-  "SSP-based constraints on volume of produced industrial emissions (GtCO2)"
+  "SSP-based constraints on volume of industrial emissions (GtCO2)"
   [ssp start-year time-step]
   (-> (fn [_] (get-industrial-emissions ssp))
       (common/take-by start-year time-step)
-      (#(hash-map :industrial-emissions {:produced {:maximum %}}))))
+      (#(hash-map :industrial-emissions
+                  (assoc common/cummulative-emissions-volume
+                         :produced
+                         {:maximum %})))))
 
 (defn parameters
   "SSP-based parameters.

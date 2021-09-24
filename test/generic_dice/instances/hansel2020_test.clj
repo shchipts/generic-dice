@@ -18,15 +18,15 @@
     (; Act
      let [hansel1 (decarbonization 2015 5)
           hansel2 (decarbonization 2020 5)
-          hansel3 (decarbonization 2045 5)
-          hansel4 (decarbonization 2050 5)
-          hansel5 (decarbonization 2055 5)
+          hansel3 (decarbonization 2040 5)
+          hansel4 (decarbonization 2045 5)
+          hansel5 (decarbonization 2050 5)
 
           hansel6 (decarbonization 2015 10)
           hansel7 (decarbonization 2025 10)
-          hansel8 (decarbonization 2045 10)
-          hansel9 (decarbonization 2055 10)
-          hansel10 (decarbonization 2065 10)
+          hansel8 (decarbonization 2035 10)
+          hansel9 (decarbonization 2045 10)
+          hansel10 (decarbonization 2055 10)
 
           hansel11 (decarbonization 2020 10)
           hansel12 (decarbonization 2030 10)
@@ -36,9 +36,9 @@
 
       ; Assert
       (is (= (:net-zero-timing hansel1)
-             7))
-      (is (= (:net-zero-timing hansel2)
              6))
+      (is (= (:net-zero-timing hansel2)
+             5))
       (is (= (:net-zero-timing hansel3)
              1))
       (is (= (:net-zero-timing hansel4)
@@ -47,9 +47,9 @@
              0))
 
       (is (= (:net-zero-timing hansel6)
-             4))
-      (is (= (:net-zero-timing hansel7)
              3))
+      (is (= (:net-zero-timing hansel7)
+             2))
       (is (= (:net-zero-timing hansel8)
              1))
       (is (= (:net-zero-timing hansel9)

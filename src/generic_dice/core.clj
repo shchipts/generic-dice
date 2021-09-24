@@ -14,8 +14,9 @@
             [generic-dice.instances.dice2016 :as dice2016]
             [generic-dice.instances.hansel2020 :as hansel2020]
             [generic-dice.instances.SSPs :as ssp]
+            [generic-dice.provider :as provider]
             [utilities-clj.cmd :as cmd]
-            [utilities-clj.writer :as writer])
+            [utilities-clj.reader :as reader])
   (:gen-class))
 
 (def ^{:private true} labels
@@ -24,24 +25,24 @@
    :initial-values ["DICE2016"]
    :decarbonization ["Hansel2020"]
    :volume ["SSP1" "SSP2" "SSP3" "SSP4" "SSP5"]
-   :commands [:tree]})
+   :commands [:emissions-tree :emissions-paths]})
 
 (def ^:private cli-options
   "Command line options."
   [["-c" "--command NAME" "What to simulate from the model?"
-   :id :command
-   :default :tree
-   :parse-fn keyword
-   :validate
-   [#(some (fn [label] (= % label)) (:commands labels))
-    (fn [x]
-      (->> (:commands labels)
-           (map (fn [l] (str " " l)))
-           (apply
-            str
-            x
-            " not supported simulation command\n(supported")
-           (#(str % ")"))))]]
+    :id :command
+    :default :emissions-tree
+    :parse-fn keyword
+    :validate
+    [#(some (fn [label] (= % label)) (:commands labels))
+     (fn [x]
+       (->> (:commands labels)
+            (map (fn [l] (str " " l)))
+            (apply
+             str
+             x
+             " not supported simulation command\n(supported")
+            (#(str % ")"))))]]
    ["-g" "--grid-step G" "Emissions grid step G (GtC)"
     :id :grid
     :default 0.5
@@ -126,12 +127,14 @@
              " not in supported collections of emissions volume constraints\n"
              "(supported")
             (#(str % ")"))))]]
-    ["-f" "--folder PATH" "PATH to folder for output writing"
-     :id :save
-     :default "bin"]
-    ["-o" "--options" "Print options to file"
-     :id :oprint
-     :default false]])
+   ["-f" "--input FILE" "Path to file with simulation input data"
+    :id :input]
+   ["-r" "--folder PATH" "PATH to folder for output writing"
+    :id :save
+    :default "bin"]
+   ["-o" "--options" "Print options to file"
+    :id :oprint
+    :default false]])
 
 (defn- initial-values
   "Initial values:
@@ -176,13 +179,6 @@ increase in emissions reductions - GtCO2 per time-step"
      "SSP5" (partial ssp/volume :SSP5))
    start-year time-step))
 
-(defn- write-edn
-  "Write clojure object to edn file"
-  [data file options]
-  (->> (pr-str data)
-       vector
-       (writer/txt-file (:save options) file)))
-
 (defn- tree
   "A sampled graph of temporal emissions"
   [options]
@@ -201,25 +197,44 @@ increase in emissions reductions - GtCO2 per time-step"
                                dec)
                            %))
                    first
-                   (#(hash-map :tree %))
-                   (merge opts)
-                   (write-edn "tree.edn" options)))
+                   ((juxt #(provider/write-tree % options opts)
+                          #(provider/write-tree-stats % options)))))
              (fn [[pars init constraints opts]]
                (if (:oprint options)
-                 (-> (assoc opts
-                      :initial-values init
-                      :parameters pars
-                      :constraints constraints)
-                     (write-edn "options.edn" options))))))))
+                 (provider/write-tree-options
+                  init
+                  pars
+                  constraints
+                  options
+                  opts)))))))
+
+(defn- paths
+  "Generated emissions pathways"
+  [{input-file :input output-dir :save}]
+  (->> (reader/load-edn input-file)
+       ((juxt (fn [{tree :tree options :options}]
+                (proc/emissions-paths
+                 tree
+                 (:grid options)
+                 (initial-values options)
+                 (hash-map :time-step (:step options))
+                 (volume options)))
+              (comp :gross :tree)
+              (comp :abated :tree)
+              (comp :grid :options)))
+       ((fn [[paths gross abated h]]
+          (provider/write-emissions-paths paths gross abated h output-dir)))))
 
 (defn -main
   "Performs simulations from generic DICE model"
   [& args]
   (cmd/terminal
    {:short-desc "Generic DICE as simulation model"
+    :args args
     :options cli-options
     :execute
     (fn [_ options]
       (time
        (condp = (:command options)
-         :tree (tree options))))}))
+         :emissions-tree (tree options)
+         :emissions-paths (paths options))))}))

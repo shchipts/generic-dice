@@ -24,12 +24,13 @@ Units:
   {:pre-peak {:reduction {:growth (* time-step 2)}
               :reduction-rate {:maximum 1}}
    :net-zero-timing
-   (-> (- 2045 start-year)
-       (/ time-step)
-       math/floor
-       int
-       inc
-       (#(if (neg? %) 0 %)))
+   (reduce
+    (fn [seed next]
+      (if (< next 2045)
+        (inc seed)
+        (reduced seed)))
+    0
+    (iterate #(+ % time-step) start-year))
    :post-peak {:reduction-rate
                {:maximum 1.2
                 :growth-rate (math/expt 1.1 (/ time-step 5))}}})

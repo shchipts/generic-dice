@@ -30,3 +30,15 @@ year and specified time period (which must be divided by 5 without remainder)"
          (drop-while (comp seq last))
          first
          first)))
+
+(def cummulative-emissions-volume
+  "Remaining emissions quotas (GtCO2).
+
+Taken from Friedlingstein et al. (2014) for 50% probability of global-mean
+warming below 3 °C.
+
+Friedlingstein, P., Andrew, R., Rogelj, J., Peters, G., Canadell, J.,
+Knutti, R., Luderer, G., Raupach, M., Schaeffer, M., van Vuuren, D., &
+Le Quere, C. (2014). Persistent Growth of CO2 Emissions and Implications for
+Reaching Climate Targets. Nature Geoscience, Advanced Online Publication."
+  {:cumulative-emissions {:maximum 3300}})
