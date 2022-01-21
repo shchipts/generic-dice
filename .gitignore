@@ -1,3 +1,5 @@
+# clojure
+
 pom.xml
 pom.xml.asc
 *.jar
@@ -7,4 +9,11 @@ pom.xml.asc
 *.eastwood
 bin/
 target/
+checkouts/
 *results/
+
+# python
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]

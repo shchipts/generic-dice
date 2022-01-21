@@ -14,8 +14,27 @@ Nordhaus, W. (2017). Revisiting the Social Cost of Carbon.
   PNAS, 114(7): 1518-1523"
       :author "Anna Shchiptsova"}
  generic-dice.instances.dice2016
-  (:require [clojure.math.numeric-tower :as math]
-            [generic-dice.instances.common :as common]))
+  (:require [clojure.math.numeric-tower :as math]))
+
+(defn- take-by
+  "Filters generated collection (from 2015 to 2100 by 5 year period) by start
+year and specified time period (which must be divided by 5 without remainder)"
+  [generatef start-year time-step]
+  (let [stepf #(int (/ % 5))
+        numf #(stepf (- % 2015))]
+    (->> (numf 2100)
+         inc
+         generatef
+         (drop (numf start-year))
+         (vector [])
+         (iterate
+          (fn [[seed coll]]
+            ((juxt #(conj seed (first %))
+                   #(drop (stepf time-step) %))
+             coll)))
+         (drop-while (comp seq last))
+         first
+         first)))
 
 (def initial-values
   "DICE 2016 initial values in year 2015.
@@ -77,7 +96,7 @@ Units:
     (from start-year to 2105 by time-step)"
   [start-year time-step]
   (->> (vector get-carbon-intensity get-labor get-tfp)
-       (map #(common/take-by % start-year time-step))
+       (map #(take-by % start-year time-step))
        ((fn [[carbon-intensity labor tfp]]
           {:depreciation-rate 0.1
            :carbon-intensity carbon-intensity
