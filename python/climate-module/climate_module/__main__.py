@@ -17,13 +17,14 @@ def _climate_module(label):
     if label == "hansel2020":
         return hansel2020
 
-def _input(label):
+def _input(label, folder):
     if label == "hansel2020":
         return read_input(
             'hansel FFI.csv',
+            in_resources = True,
             transform = lambda e: e + emissions_land_use_co2(e.size))
     elif label.startswith('SSP'):
-        return read_input("net-emissions " + label + ".csv")
+        return read_input(folder + "/net-emissions " + label + ".csv")
 
 def _other_rf(input, ratio):
     if ratio == "hansel2020":
@@ -37,10 +38,10 @@ def _other_rf(input, ratio):
 
 def main(argv):
 
-    module, input, ratio = parse(argv, _options())
+    module, input, ratio, folder = parse(argv, _options())
 
     climate = _climate_module(module)
-    header, ids, net_emissions_paths = _input(input)
+    header, ids, net_emissions_paths = _input(input, folder)
     other_rf, absolute_other_rf = _other_rf(input, ratio)
 
     climate_output = [[], []]

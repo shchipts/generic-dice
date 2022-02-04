@@ -4,8 +4,17 @@ import numpy as np
 import os
 from . import resources
 
-def read_input(resource, transform = lambda x: x, n_pars = 5):
-    file = pkg_resources.open_text(resources, resource)
+def read_input(
+    resource,
+    in_resources = False,
+    transform = lambda x: x,
+    n_pars = 6):
+
+    if in_resources:
+        file = pkg_resources.open_text(resources, resource)
+    else:
+        file = open(resource, "r")
+
     csvreader = csv.reader(file)
 
     header = next(csvreader)

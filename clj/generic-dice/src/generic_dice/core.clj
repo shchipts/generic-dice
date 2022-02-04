@@ -33,10 +33,10 @@
     [#(some (fn [label] (= % label)) (:commands labels))
      (fn [x]
        (->> (:commands labels)
-            (map (fn [l] (str " " l)))
+            (map (fn [l] (str " " (name l))))
             (apply
              str
-             x
+             (name x)
              " not supported simulation command\n(supported")
             (#(str % ")"))))]]
    ["-z" "--time-step Z" "Time step Z"
@@ -69,10 +69,10 @@
     [#(some (fn [label] (= % label)) (:initial-values labels))
      (fn [x]
        (->> (:initial-values labels)
-            (map (fn [l] (str " " l)))
+            (map (fn [l] (str " " (name l))))
             (apply
              str
-             x
+             (name x)
              " not in supported collections of initial values\n(supported")
             (#(str % ")"))))]]
    ["-d" "--damages MODEL" "MODEL instance: damage function"
@@ -83,10 +83,10 @@
     [#(some (fn [label] (= % label)) (:damages labels))
      (fn [x]
        (->> (:damages labels)
-            (map (fn [l] (str " " l)))
+            (map (fn [l] (str " " (name l))))
             (apply
              str
-             x
+             (name x)
              " not supported damage function\n(supported")
             (#(str % ")"))))]]
    ["-a" "--costs MODEL" "MODEL instance: abatement cost function"
@@ -97,10 +97,10 @@
     [#(some (fn [label] (= % label)) (:costs labels))
      (fn [x]
        (->> (:costs labels)
-            (map (fn [l] (str " " l)))
+            (map (fn [l] (str " " (name l))))
             (apply
              str
-             x
+             (name x)
              " not supported cost function\n(supported")
             (#(str % ")"))))]]
    ["-p" "--scenario MODEL" "MODEL instance: SSP scenario"
@@ -111,10 +111,10 @@
     [#(some (fn [label] (= % label)) (:scenarios labels))
      (fn [x]
        (->> (:scenarios labels)
-            (map (fn [l] (str " " l)))
+            (map (fn [l] (str " " (name l))))
             (apply
              str
-             x
+             (name x)
              " not supported SSP scenario\n(supported")
             (#(str % ")"))))]]
    ["-f" "--input FILE" "Path to FILE with simulation input data"
@@ -128,7 +128,11 @@
 
 (def ^:private cdr-pars
   "Parameterized CDR curves"
-  (map #(vector % 2050 40) (range 0 20.5 0.5)))
+  (map
+   (fn [id K]
+     (vector (inc id) K 2050 40))
+   (range)
+   (range 0 20.5 0.5)))
 
 (defn- initial-values
   "Initial values:
@@ -193,7 +197,9 @@
                             :industrial-emissions
                             (#(map
                                (fn [pars]
-                                 (conj pars %))
+                                 (-> (rest pars)
+                                     (conj %)
+                                     (conj (first pars))))
                                net-emissions-pars))
                             (commands/economic-growth
                              cdr-pars

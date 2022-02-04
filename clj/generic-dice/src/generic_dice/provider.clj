@@ -23,18 +23,20 @@
                ((juxt :parameters :paths))
                (apply
                 map
-                (fn [pars path]
+                (fn [id pars path]
                   (->> (map #(formatter/double-to-str (double %1) %2)
                             pars
                             [2 0 2 0 0])
+                       (#(conj % (str id)))
                        vec
                        (#(reduce
                           (fn [seed x]
                             (conj seed (formatter/double-to-str x 6)))
                           %
-                          path)))))
+                          path))))
+                (map inc (range)))
                (#(->> (map str ts)
-                      (concat (list "y1" "x1" "K" "midpoint_offset" "dt"))
+                      (concat (list "id" "y1" "x1" "K" "midpoint_offset" "dt"))
                       (conj %)))
                (writer/csv-file
                 output-dir
@@ -54,10 +56,10 @@
                      (map
                       #(%2 %1)
                       pars
-                      [to-double to-int to-double to-int to-int]))
+                      [to-int to-double to-int to-double to-int to-int]))
                    (fn [[_ curves]]
                      (map to-double curves)))
-             (split-at 5 row))))
+             (split-at 6 row))))
          (apply map list))))
 
 (defn write-economic-output
@@ -78,7 +80,7 @@
                        ((fn [coll]
                           (map #(formatter/double-to-str (double %1) %2)
                                coll
-                               [2 2 0 2 0 0 2 0 0])))
+                               [0 2 2 0 2 0 0 0 2 0 0])))
                        vec
                        (#(reduce
                           (fn [seed x]
@@ -87,12 +89,14 @@
                           path)))))
                (#(->> (map str ts)
                       (concat
-                       (list "y0"
+                       (list "id"
+                             "y0"
                              "y1"
                              "x1"
                              "K"
                              "midpoint_offset"
                              "dt"
+                             "id_CDR"
                              "K_CDR"
                              "midpoint_CDR"
                              "dt_CDR"))
@@ -112,7 +116,7 @@
         (fn [pars path]
           (->> (map #(formatter/double-to-str (double %1) %2)
                     pars
-                    [2 0 0])
+                    [0 2 0 0])
                vec
                (#(reduce
                   (fn [seed x]
@@ -120,6 +124,6 @@
                   %
                   path)))))
        (#(->> (map str ts)
-              (concat (list "K_CDR" "midpoint_CDR" "dt_CDR"))
+              (concat (list "id_CDR" "K_CDR" "midpoint_CDR" "dt_CDR"))
               (conj %)))
        (writer/csv-file output-dir "cdr-emissions.csv")))
