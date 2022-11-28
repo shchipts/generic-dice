@@ -1,4 +1,4 @@
-;   Copyright (c) 2021 International Institute for Applied Systems Analysis.
+;   Copyright (c) 2022 International Institute for Applied Systems Analysis.
 ;   All rights reserved. The use and distribution terms for this software
 ;   are covered by the MIT License (http://opensource.org/licenses/MIT)
 ;   which can be found in the file LICENSE at the root of this distribution.
@@ -23,18 +23,16 @@
                ((juxt :parameters :paths))
                (apply
                 map
-                (fn [id pars path]
+                (fn [pars path]
                   (->> (map #(formatter/double-to-str (double %1) %2)
                             pars
-                            [2 0 2 0 0])
-                       (#(conj % (str id)))
+                            [0 2 0 2 0 0])
                        vec
                        (#(reduce
                           (fn [seed x]
                             (conj seed (formatter/double-to-str x 6)))
                           %
-                          path))))
-                (map inc (range)))
+                          path)))))
                (#(->> (map str ts)
                       (concat (list "id" "y1" "x1" "K" "midpoint_offset" "dt"))
                       (conj %)))

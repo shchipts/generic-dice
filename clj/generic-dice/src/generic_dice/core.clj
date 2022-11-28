@@ -1,4 +1,4 @@
-;   Copyright (c) 2021 International Institute for Applied Systems Analysis.
+;   Copyright (c) 2022 International Institute for Applied Systems Analysis.
 ;   All rights reserved. The use and distribution terms for this software
 ;   are covered by the MIT License (http://opensource.org/licenses/MIT)
 ;   which can be found in the file LICENSE at the root of this distribution.
@@ -10,7 +10,6 @@
       :author "Anna Shchiptsova"}
  generic-dice.core
   (:require [dice-simulator.commands :as commands]
-            [generic-dice.instances.dice2016 :as dice2016]
             [generic-dice.provider :as provider]
             [utilities-clj.cmd :as cmd])
   (:gen-class))
@@ -19,8 +18,8 @@
   "Labels of supported arguments"
   {:scenarios [:SSP1 :SSP2 :SSP3 :SSP4 :SSP5]
    :initial-values ["DICE2016"]
-   :damages [:howard-sterner2017]
-   :costs [:dice2016 :dice2013]
+   :damages [:howard-sterner2017 :burke2015]
+   :costs [:dice2016 :dice2013 :su2017]
    :commands [:net-emissions-ffi :economy :cdr]})
 
 (def ^:private cli-options
@@ -140,7 +139,8 @@
     emissions reduction rate - unitless"
   [{init :init}]
   (condp = init
-    "DICE2016" dice2016/initial-values))
+    "DICE2016" {:industrial-emissions 35.85
+                :reduction-rate 0.03}))
 
 (defn- net-emissions-ffi-pars
   "Defines parameters for net FFI emissions curves"
@@ -157,11 +157,11 @@
          (fn [coll]
            (->> (first coll)
                 ((juxt #(+ (first %) 0.5)
-                       #(inc (second %))
+                       #(+ (second %) 0.5)
                        last))
                 (conj coll)))
          (list [-20 15 50]))
-        (drop-while #(neg? (ffirst %)))
+        (drop-while #(< (ffirst %) 20))
         first)))
 
 (defn- net-emissions-ffi
