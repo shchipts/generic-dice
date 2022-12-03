@@ -4,11 +4,12 @@ import numpy as np
 import os
 from . import resources
 
+
 def read_input(
     resource,
-    in_resources = False,
-    transform = lambda x: x,
-    n_pars = 6):
+    in_resources=False,
+    transform=lambda x: x,
+        n_pars=6):
 
     if in_resources:
         file = pkg_resources.open_text(resources, resource)
@@ -23,11 +24,12 @@ def read_input(
     values = []
     for row in csvreader:
         ids.append(row[:n_pars])
-        values.append(transform(np.array(row[n_pars:], dtype = float)))
+        values.append(transform(np.array(row[n_pars:], dtype=float)))
 
     file.close()
 
     return header, ids, values
+
 
 def read_other_rf_ratio(resource, ssp, ratio):
     file = pkg_resources.open_text(resources, resource)
@@ -37,10 +39,11 @@ def read_other_rf_ratio(resource, ssp, ratio):
 
     for row in csvreader:
         if row[0] == ssp and row[1] == ratio:
-            other_rf = np.array(row[2:], dtype = float)
+            other_rf = np.array(row[2:], dtype=float)
             break
 
     return other_rf
+
 
 def write_output(input, module, ratio, variable, header, ids, data):
 
@@ -50,7 +53,7 @@ def write_output(input, module, ratio, variable, header, ids, data):
 
     filename = variable + " (other_rf " + ratio + ").csv"
 
-    with open(os.path.join(folder, filename), 'w', newline = '') as file:
+    with open(os.path.join(folder, filename), 'w', newline='') as file:
         csvwriter = csv.writer(file)
         csvwriter.writerow(header)
         for id, values in zip(ids, data):

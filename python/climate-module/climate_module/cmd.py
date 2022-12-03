@@ -1,15 +1,17 @@
 import getopt
 import sys
 
+
 def _fail(arg, label, vals):
-    sys.exit( \
-        "Failed to validate: " + \
-        arg + \
-        " not supported " + \
-        label + \
-        "\n(supported " + \
-        ' '.join(map(str, vals)) + \
+    sys.exit(
+        "Failed to validate: " +
+        arg +
+        " not supported " +
+        label +
+        "\n(supported " +
+        ' '.join(map(str, vals)) +
         ")")
+
 
 def parse(argv, options):
     help = 'Usage: python -m climate-module' + \
@@ -33,15 +35,15 @@ def parse(argv, options):
             sys.exit(help)
         elif opt in ("-c", "--climate"):
             module = arg
-            if not module in options["module"]:
+            if module not in options["module"]:
                 _fail(module, "climate module", options["module"])
         elif opt in ("-i", "--input"):
             input = arg
-            if not input in options["input"]:
+            if input not in options["input"]:
                 _fail(input, "input", options["input"])
         elif opt in ("-r", "--ratio"):
             ratio = arg
-            if not ratio in options["ratio"]:
+            if ratio not in options["ratio"]:
                 _fail(ratio, "ratio", options["ratio"])
         elif opt in ("-f", "--folder"):
             folder = arg

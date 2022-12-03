@@ -6,6 +6,7 @@ from climate_module.hansel2020.inputs import (
     emissions_land_use_co2)
 from climate_module.hansel2020.model import climate_module as hansel2020
 
+
 def _options():
     return {
         "module": ["hansel2020"],
@@ -13,18 +14,21 @@ def _options():
         "ratio": ["avg", "max", "min", "hansel2020"]
     }
 
+
 def _climate_module(label):
     if label == "hansel2020":
         return hansel2020
+
 
 def _input(label, folder):
     if label == "hansel2020":
         return read_input(
             'hansel FFI.csv',
-            in_resources = True,
-            transform = lambda e: e + emissions_land_use_co2(e.size))
+            in_resources=True,
+            transform=lambda e: e + emissions_land_use_co2(e.size))
     elif label.startswith('SSP'):
         return read_input(folder + "/net-emissions " + label + ".csv")
+
 
 def _other_rf(input, ratio):
     if ratio == "hansel2020":
@@ -35,6 +39,7 @@ def _other_rf(input, ratio):
             "SSP markers ratio non_CO2 to CO2.csv",
             input,
             labels[ratio]), False
+
 
 def main(argv):
 
@@ -55,7 +60,7 @@ def main(argv):
 
     for variable, data in zip(
         ["temperature change", "concentration"],
-        climate_output):
+            climate_output):
         write_output(input, module, ratio, variable, header, ids, data)
 
 
