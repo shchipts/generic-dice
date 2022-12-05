@@ -7,7 +7,7 @@ pom.xml.asc
 *.lein-*
 *.nrepl-port
 *.eastwood
-bin/
+bin*/
 target/
 checkouts/
 *results/
@@ -17,4 +17,6 @@ checkouts/
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
+*.prospector.yml
+*.vscode
 R/

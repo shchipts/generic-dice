@@ -13,9 +13,9 @@ radiative_forcing_non_co2 = np.array([
     0.367, 0.352, 0.337])
 
 
-def emissions_land_use_co2(n):
-    e = np.zeros(n)
-    e[0] = 2.6
-    for x in range(1, n):
-        e[x] = e[x - 1] * (1 - 0.115)
-    return e
+def emissions_land_use_co2(n_points):
+    e_points = np.zeros(n_points)
+    e_points[0] = 2.6
+    for x_points in range(1, n_points):
+        e_points[x_points] = e_points[x_points - 1] * (1 - 0.115)
+    return e_points

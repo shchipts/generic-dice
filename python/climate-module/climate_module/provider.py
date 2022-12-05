@@ -1,23 +1,12 @@
-import csv
-import importlib.resources as pkg_resources
-import numpy as np
 import os
+import csv
+from importlib.resources import open_text
+import numpy as np
 from . import resources
 
 
-def read_input(
-    resource,
-    in_resources=False,
-    transform=lambda x: x,
-        n_pars=6):
-
-    if in_resources:
-        file = pkg_resources.open_text(resources, resource)
-    else:
-        file = open(resource, "r")
-
+def parse_emissions(file, transform, n_pars):
     csvreader = csv.reader(file)
-
     header = next(csvreader)
 
     ids = []
@@ -26,16 +15,28 @@ def read_input(
         ids.append(row[:n_pars])
         values.append(transform(np.array(row[n_pars:], dtype=float)))
 
-    file.close()
-
     return header, ids, values
 
 
-def read_other_rf_ratio(resource, ssp, ratio):
-    file = pkg_resources.open_text(resources, resource)
-    csvreader = csv.reader(file)
+def read_emissions(
+    resource,
+    in_resources=False,
+    transform=lambda x: x,
+        n_pars=6):
 
-    header = next(csvreader)
+    if in_resources:
+        with open_text(resources, resource) as file:
+            content = parse_emissions(file, transform, n_pars)
+    else:
+        with open(resource, 'r', encoding='utf8') as file:
+            content = parse_emissions(file, transform, n_pars)
+
+    return content
+
+
+def read_other_rf_ratio(resource, ssp, ratio):
+    file = open_text(resources, resource)
+    csvreader = csv.reader(file)
 
     for row in csvreader:
         if row[0] == ssp and row[1] == ratio:
@@ -45,17 +46,23 @@ def read_other_rf_ratio(resource, ssp, ratio):
     return other_rf
 
 
-def write_output(input, module, ratio, variable, header, ids, data):
+def write_output(args, variable, header, par_ids, data):
 
-    folder = os.path.join("bin", module, "scenario " + input)
+    folder = os.path.join('bin', 'scenario ' + args['emissions'])
     if not os.path.exists(folder):
         os.makedirs(folder)
 
-    filename = variable + " (other_rf " + ratio + ").csv"
+    filename = variable + ' (other_rf ' + args['ratio'] + ').csv'
 
-    with open(os.path.join(folder, filename), 'w', newline='') as file:
+    with open(
+        os.path.join(folder, filename),
+        'w',
+        newline='',
+            encoding='utf8') as file:
+
         csvwriter = csv.writer(file)
         csvwriter.writerow(header)
-        for id, values in zip(ids, data):
+
+        for par_id, values in zip(par_ids, data):
             out = list(map(lambda x: format(x, '.3f'), values))
-            csvwriter.writerow([*id, *out])
+            csvwriter.writerow([*par_id, *out])

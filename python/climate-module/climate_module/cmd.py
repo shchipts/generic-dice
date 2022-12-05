@@ -1,53 +1,50 @@
-import getopt
+from getopt import getopt, GetoptError
 import sys
 
 
 def _fail(arg, label, vals):
     sys.exit(
-        "Failed to validate: " +
+        'Failed to validate: ' +
         arg +
-        " not supported " +
+        ' not supported ' +
         label +
-        "\n(supported " +
+        '\n(supported ' +
         ' '.join(map(str, vals)) +
-        ")")
+        ')')
 
 
 def parse(argv, options):
-    help = 'Usage: python -m climate-module' + \
-        ' -c <climate_module> -i <input> -r <ratio> -f <folder>'
+    help_msg = 'Usage: python -m climate-module' + \
+        ' -e <emissions> -r <ratio> -f <folder>'
 
     try:
-        opts, args = getopt.getopt(
+        opts, _ = getopt(
             argv,
-            "hc:i:r:f:",
-            ["climate=", "input=", "ratio=", "folder="])
-    except getopt.GetoptError:
-        sys.exit(help)
+            'h:e:r:f:',
+            ['emissions=', 'ratio=', 'folder='])
+    except GetoptError:
+        sys.exit(help_msg)
 
     if len(opts) < 3:
-        sys.exit(help)
+        sys.exit(help_msg)
 
-    folder = None
-
+    args = {}
+    args['folder'] = None
     for opt, arg in opts:
         if opt == '-h':
             sys.exit(help)
-        elif opt in ("-c", "--climate"):
-            module = arg
-            if module not in options["module"]:
-                _fail(module, "climate module", options["module"])
-        elif opt in ("-i", "--input"):
-            input = arg
-            if input not in options["input"]:
-                _fail(input, "input", options["input"])
-        elif opt in ("-r", "--ratio"):
-            ratio = arg
-            if ratio not in options["ratio"]:
-                _fail(ratio, "ratio", options["ratio"])
-        elif opt in ("-f", "--folder"):
-            folder = arg
-        else:
-            sys.exit(help)
+        if opt in ('-e', '--emissions'):
+            if arg not in options['emissions']:
+                _fail(arg, 'emissions', options['emissions'])
+            args['emissions'] = arg
+        if opt in ('-r', '--ratio'):
+            if arg not in options['ratio']:
+                _fail(arg, 'ratio', options['ratio'])
+            args['ratio'] = arg
+        if opt in ('-f', '--folder'):
+            args['folder'] = arg
 
-    return module, input, ratio, folder
+    if len(args) < 3:
+        sys.exit(help)
+
+    return args
