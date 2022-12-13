@@ -1,8 +1,22 @@
+""" Execution command checker.
+
+All rights reserved. The use and distribution terms for this software
+are covered by the MIT License (http://opensource.org/licenses/MIT)
+which can be found in the file LICENSE at the root of this distribution.
+By using this software in any fashion, you are agreeing to be bound by
+the terms of this license.
+You must not remove this notice, or any other, from this software.
+"""
+
+__author__ = "Anna Shchiptsova"
+__copyright__ = "Copyright (c) 2022 IIASA"
+
 from getopt import getopt, GetoptError
 import sys
 
 
 def _fail(arg, label, vals):
+    """Terminate execution with invalid arguments error message."""
     sys.exit(
         'Failed to validate: ' +
         arg +
@@ -14,6 +28,7 @@ def _fail(arg, label, vals):
 
 
 def parse(argv, options):
+    """Parse command line arguments."""
     help_msg = 'Usage: python -m climate-module' + \
         ' -e <emissions> -r <ratio> -f <folder>'
 

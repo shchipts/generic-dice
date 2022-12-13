@@ -1,3 +1,16 @@
+""" Forward and backward processing of I/O data.
+
+All rights reserved. The use and distribution terms for this software
+are covered by the MIT License (http://opensource.org/licenses/MIT)
+which can be found in the file LICENSE at the root of this distribution.
+By using this software in any fashion, you are agreeing to be bound by
+the terms of this license.
+You must not remove this notice, or any other, from this software.
+"""
+
+__author__ = "Anna Shchiptsova"
+__copyright__ = "Copyright (c) 2022 IIASA"
+
 import os
 import csv
 from importlib.resources import open_text
@@ -5,7 +18,8 @@ import numpy as np
 from . import resources
 
 
-def parse_emissions(file, transform, n_pars):
+def _parse_emissions(file, transform, n_pars):
+    """Parse net emissions curve values from csv file."""
     csvreader = csv.reader(file)
     header = next(csvreader)
 
@@ -23,18 +37,20 @@ def read_emissions(
     in_resources=False,
     transform=lambda x: x,
         n_pars=6):
+    """Read net emissions pathways from csv file."""
 
     if in_resources:
         with open_text(resources, resource) as file:
-            content = parse_emissions(file, transform, n_pars)
+            content = _parse_emissions(file, transform, n_pars)
     else:
         with open(resource, 'r', encoding='utf8') as file:
-            content = parse_emissions(file, transform, n_pars)
+            content = _parse_emissions(file, transform, n_pars)
 
     return content
 
 
 def read_other_rf_ratio(resource, ssp, ratio):
+    """Read radiative forcing from non-CO2 curves from csv resources file."""
     file = open_text(resources, resource)
     csvreader = csv.reader(file)
 
@@ -47,6 +63,7 @@ def read_other_rf_ratio(resource, ssp, ratio):
 
 
 def write_output(args, variable, header, par_ids, data):
+    """Write temperature pathways into csv file."""
 
     folder = os.path.join('bin', 'scenario ' + args['emissions'])
     if not os.path.exists(folder):

@@ -1,5 +1,4 @@
-"""
-Climate module parameters (Hansel et al. 2020)
+""" Climate module parameters (Hansel et al. 2020).
 
 
 General:
@@ -51,7 +50,7 @@ Carbon cycle module (Smith et al. 2018; Hansel et al. 2020):
 
 .. parameters:: CARBON_BOXES0
 
-    Indicates TODO.
+    Indicates carbon cycle parameters.
 
 .. parameters:: C_CO2_EQ
 
@@ -84,7 +83,6 @@ Energy balance model(Hansel et al. 2020):
 
     Indicates coefficient of heat gain by deep oceans.
 
-
 References:
     [1] Hansel, M., Drupp, M., Johansson, D., Nesje, F., Azar, C., Freeman, M.,
     Groom, B., & Sterner, T. (2020). Climate Economics Support for the UN
@@ -94,7 +92,17 @@ References:
     Passerello, G., & Regayre, L. (2018). FAIR - Finite Amplitude Impulse
     Response Model (multi-forcing version).	In Geoscientific Model Development
     (v1.3.2). Zenodo. https://doi.org/10.5281/zenodo.1247898
+
+All rights reserved. The use and distribution terms for this software
+are covered by the MIT License (http://opensource.org/licenses/MIT)
+which can be found in the file LICENSE at the root of this distribution.
+By using this software in any fashion, you are agreeing to be bound by
+the terms of this license.
+You must not remove this notice, or any other, from this software.
 """
+
+__author__ = "Anna Shchiptsova"
+__copyright__ = "Copyright (c) 2022 IIASA"
 
 import numpy as np
 

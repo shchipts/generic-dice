@@ -1,3 +1,35 @@
+""" Climate module implementation from Hansel et al. (2020).
+
+Climate module includes 1) carbon cycle representation from the FAIR climate
+model (Smith et al. 2018), and 2) energy balance model based on Geoffroy (2013)
+with dynamic non-CO2 forcings.
+
+References:
+    [1] Hansel, M., Drupp, M., Johansson, D., Nesje, F., Azar, C., Freeman, M.,
+    Groom, B., & Sterner, T. (2020). Climate Economics Support for the UN
+    Climate Targets. Nature Climate Change, 10: 781-789.
+    https://doi.org/10.1038/s41558-020-0833-x
+    [2] Smith, C. J., Forster, P. M.,  Allen, M., Leach, N., Millar, R. J.,
+    Passerello, G. A., & Regayre, L. A. (2018). FAIR v1.3: a Simple Emissions-
+    Based Impulse Response and Carbon Cycle Model. Geoscientific Model
+    Development, 11: 2273–2297. https://doi.org/10.5194/gmd-11-2273-2018
+    [3] Geoffroy, O., Saint-Martin, D., Olivié, D. J. L., Voldoire, A.,
+    Bellon, G., & Tytéca, S. (2013). Transient Climate Response in a Two-Layer
+    Energy-Balance Model. Part I: Analytical Solution and Parameter Calibration
+    Using CMIP5 AOGCM Experiments. Journal of Climate, 26: 1841–1857.
+    https://doi.org/10.1175/JCLI-D-12-00195.1
+
+All rights reserved. The use and distribution terms for this software
+are covered by the MIT License (http://opensource.org/licenses/MIT)
+which can be found in the file LICENSE at the root of this distribution.
+By using this software in any fashion, you are agreeing to be bound by
+the terms of this license.
+You must not remove this notice, or any other, from this software.
+"""
+
+__author__ = "Anna Shchiptsova"
+__copyright__ = "Copyright (c) 2022 IIASA"
+
 from functools import reduce
 import numpy as np
 from scipy.optimize import brentq
@@ -5,11 +37,12 @@ from . import parameters as pars
 
 
 def _co2_to_c(co2):
+    """Convert GtCO2 to GtC."""
     return co2 / 3.666
 
 
 def _init_emissions(e_co2):
-
+    """Calculate cumulative net CO2 emissions curve (GtC)."""
     ecum_c = np.zeros(e_co2.size)
     ecum_c[0] = pars.ECUM0
     for idx in range(1, e_co2.size):
@@ -19,9 +52,9 @@ def _init_emissions(e_co2):
 
 
 def _iirf_equation(alpha, ecum_c, c_co2, temp_atm):
-
+    """The 100-year average airborne fraction of a pulse of CO2 equation."""
     iirf1 = pars.R0 + pars.RC * (ecum_c - (c_co2 - pars.C_CO2_EQ)) + \
-            pars.RT * temp_atm
+        pars.RT * temp_atm
     iirf2 = alpha * (np.sum(pars.A * pars.TAU *
                             (1 - np.exp(-100 / (pars.TAU * alpha)))))
 
@@ -29,11 +62,12 @@ def _iirf_equation(alpha, ecum_c, c_co2, temp_atm):
 
 
 def _carbon_concentration(carbon_boxes):
+    """Calculate carbon concentration in atmosphere (GtC)."""
     return np.sum(carbon_boxes) + pars.C_CO2_EQ
 
 
 def _carbon_cycle(e_co2, ecum_c, c_co2, temp_atm, carbon_boxes):
-
+    """Carbon cycle model."""
     alpha = brentq(_iirf_equation, 0.01, 100, args=(ecum_c, c_co2, temp_atm))
 
     carbon_boxes_next = np.zeros(carbon_boxes.size)
@@ -57,6 +91,7 @@ def _energy_balance_model(
     absolute_other_rf,
     temp_atm,
         temp_lo):
+    """Energy balance model with dynamic non-CO2 forcings."""
 
     co2_rf = (pars.KAPPA / np.log(2.)) * np.log(c_co2 / pars.C_CO2_EQ)
 
@@ -78,7 +113,12 @@ def _energy_balance_model(
 
 
 def climate_module(e_co2, other_rf, absolute_other_rf):
+    """Temperature and carbon concentration pathways for the given net CO2
+    emissions curve from Hansel et al. (2020).
 
+    Climate module can be run either with given absolute non-CO2 forcings or
+    with given ratio of non-CO2 to CO2 forcings.
+    """
     ecum_c = _init_emissions(e_co2)
     c_co2 = np.zeros(e_co2.size)
     temp_atm = np.zeros(e_co2.size)

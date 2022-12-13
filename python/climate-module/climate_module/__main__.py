@@ -1,5 +1,5 @@
 import sys
-from .cmd import parse
+from .options import parse
 from .provider import read_emissions, read_other_rf_ratio, write_output
 from climate_module.hansel2020.inputs import (
     radiative_forcing_non_co2,
@@ -8,6 +8,7 @@ from climate_module.hansel2020.model import climate_module
 
 
 def _options():
+    """Supported command line options."""
     return {
         'emissions': ['hansel2020', 'SSP1', 'SSP2', 'SSP3', 'SSP4', 'SSP5'],
         'ratio': ['avg', 'max', 'min', 'hansel2020']
