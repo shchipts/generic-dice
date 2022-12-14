@@ -1,6 +1,6 @@
 # climate-module
 
-[![PyPI version](https://badge.fury.io/py/dice-climate-simulator.svg)](https://badge.fury.io/py/dice-climate-simulator)
+[![Latest Version](https://pypip.in/version/dice-climate-simulator/badge.svg)](https://pypi.python.org/pypi/dice-climate-simulator/)
 
 Simulation routines for generic DICE model: climate module
 
