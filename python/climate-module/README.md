@@ -6,13 +6,13 @@ Simulation routines for generic DICE model: climate module
 
 The generic DICE climate module includes:
   * *python implementation of climate module from Hansel et al. (2020)*
-  * *dynamic non-CO[2] radiative forcings per SSP scenario*
+  * *dynamic non-CO_2 radiative forcings per SSP scenario*
 
 
 
 Simulation routines include:
-  * temperature pathways for given SSP(x) net CO[2] emissions (FFI + AFOLU)
-  * concentration pathways for given SSP(x) net CO[2] emissions (FFI + AFOLU)
+  * temperature pathways for given SSP(x) net CO_2 emissions (FFI + AFOLU)
+  * concentration pathways for given SSP(x) net CO_2 emissions (FFI + AFOLU)
 
 ## Install
 
@@ -27,21 +27,21 @@ $ pip install -i https://test.pypi.org/simple/ dice-climate-simulator
 
   Options:
   -e, --emissions SSP         SSP scenario
-  -r, --ratio Z               Non CO2 to CO2 forcings ratio estimate Z
+  -r, --ratio Z               Non-CO2 to CO2 forcings ratio estimate Z
   -f, --folder PATH           PATH to folder with SSP(x) net CO2 emissions pathways
   -h, --help                  Print command help
   ```
 
 ### Simulation examples
 
-  * generate climate pathways for SSP2
+  * generate climate pathways for CO_2 emissions in SSP2 scenario
   ```
   dice-climate-simulator -e SSP2 -r avg -f net-emissions-folder
   ```
   results saved to climate/scenario SSP2/temperature change (other_rf avg).csv
   and climate/scenario SSP2/concentration (other_rf avg).csv
 
-  * generate climate pathways from Hansel et al. (2020)
+  * generate climate pathways for emissions pathway from Hansel et al. (2020)
   ```
   dice-climate-simulator -e hansel2020
   ```
@@ -51,9 +51,7 @@ $ pip install -i https://test.pypi.org/simple/ dice-climate-simulator
 ## References
 
 ```
-[1] Hansel, M., Drupp, M., Johansson, D., Nesje, F., Azar, C., Freeman, M.,
-Groom, B., & Sterner, T. (2020). Climate Economics Support for the UN Climate
-Targets. Nature Climate Change, 10: 781-789.
+[1] Hansel, M., Drupp, M., Johansson, D., Nesje, F., Azar, C., Freeman, M., Groom, B., & Sterner, T. (2020). Climate Economics Support for the UN Climate Targets. Nature Climate Change, 10: 781-789.
 https://doi.org/10.1038/s41558-020-0833-x
 ```
 
