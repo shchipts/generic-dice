@@ -230,7 +230,7 @@
        (apply provider/write-cdr-emissions (:save options))))
 
 (defn -main
-  "Performs simulations from generic DICE model"
+  "Performs economy simulations from generic DICE model"
   [& args]
   (cmd/terminal
    {:short-desc "Generic DICE as simulation model"

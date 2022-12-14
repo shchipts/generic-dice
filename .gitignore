@@ -13,6 +13,9 @@ checkouts/
 *results/
 
 # python
+python/climate-module/docs
+dist/
+*.egg-info/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

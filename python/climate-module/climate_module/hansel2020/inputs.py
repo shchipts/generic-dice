@@ -1,4 +1,11 @@
-""" Net CO2 emissions and radiative forcing curves from Hansel et al. (2020).
+# Copyright (c) 2022 International Institute for Applied Systems Analysis.
+# All rights reserved. The use and distribution terms for this software
+# are covered by the MIT License (http://opensource.org/licenses/MIT)
+# which can be found in the file LICENSE at the root of this distribution.
+# By using this software in any fashion, you are agreeing to be bound by
+# the terms of this license.
+# You must not remove this notice, or any other, from this software.
+"""Net CO2 emissions and radiative forcing curves from Hansel et al. (2020).
 
 .. emissions_ffi_co2 :: GtCO2
 
@@ -9,31 +16,29 @@
     Return curve with ratios of non-CO2 radiative forcing
     to CO2 radiative forcing.
 
-References:
-    [1] Hansel, M., Drupp, M., Johansson, D., Nesje, F., Azar, C., Freeman, M.,
+References
+----------
+.. [1] Hansel, M., Drupp, M., Johansson, D., Nesje, F., Azar, C., Freeman, M.,
     Groom, B., & Sterner, T. (2020). Climate Economics Support for the UN
     Climate Targets. Nature Climate Change, 10: 781-789.
     https://doi.org/10.1038/s41558-020-0833-x
 
-All rights reserved. The use and distribution terms for this software
-are covered by the MIT License (http://opensource.org/licenses/MIT)
-which can be found in the file LICENSE at the root of this distribution.
-By using this software in any fashion, you are agreeing to be bound by
-the terms of this license.
-You must not remove this notice, or any other, from this software.
 """
 
 __author__ = "Anna Shchiptsova"
 __copyright__ = "Copyright (c) 2022 IIASA"
+__license__ = "MIT"
 
-import numpy as np
+import numpy as np  # type: ignore
 
+#: Net CO2 FFI emissions curve (GtCO2).
 emissions_ffi_co2 = np.array([
     35.7404, 37.6787, 29.0282, 29.4648, 29.4406,
     28.9376, 27.9357, 26.4317, 24.4262, 21.931,
     18.9743, 15.5854, 11.7991, 7.6487, 3.16449,
     -1.62853, -6.71595, -12.1001])
 
+#: Curve with ratios of non-CO2 radiative forcing to CO2 radiative forcing (-).
 radiative_forcing_non_co2 = np.array([
     0.31, 0.455, 0.514, 0.58, 0.586,
     0.592, 0.562, 0.533, 0.496, 0.462,
@@ -42,7 +47,7 @@ radiative_forcing_non_co2 = np.array([
 
 
 def emissions_land_use_co2(n_points):
-    """AFOLU emissions."""
+    """AFOLU emissions (GtCO2)."""
     e_points = np.zeros(n_points)
     e_points[0] = 2.6
 

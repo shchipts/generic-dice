@@ -1,23 +1,22 @@
-""" Execution command checker.
-
-All rights reserved. The use and distribution terms for this software
-are covered by the MIT License (http://opensource.org/licenses/MIT)
-which can be found in the file LICENSE at the root of this distribution.
-By using this software in any fashion, you are agreeing to be bound by
-the terms of this license.
-You must not remove this notice, or any other, from this software.
-"""
+# Copyright (c) 2022 International Institute for Applied Systems Analysis.
+# All rights reserved. The use and distribution terms for this software
+# are covered by the MIT License (http://opensource.org/licenses/MIT)
+# which can be found in the file LICENSE at the root of this distribution.
+# By using this software in any fashion, you are agreeing to be bound by
+# the terms of this license.
+# You must not remove this notice, or any other, from this software.
+"""Execution command checker."""
 
 __author__ = "Anna Shchiptsova"
 __copyright__ = "Copyright (c) 2022 IIASA"
+__license__ = "MIT"
 
 from getopt import getopt, GetoptError
-import sys
 
 
 def _fail(arg, label, vals):
     """Terminate execution with invalid arguments error message."""
-    sys.exit(
+    print(
         'Failed to validate: ' +
         arg +
         ' not supported ' +
@@ -29,7 +28,7 @@ def _fail(arg, label, vals):
 
 def parse(argv, options):
     """Parse command line arguments."""
-    help_msg = 'Usage: python -m climate-module' + \
+    help_msg = 'Usage: dice-climate-simulator' + \
         ' -e <emissions> -r <ratio> -f <folder>'
 
     try:
@@ -38,28 +37,39 @@ def parse(argv, options):
             'h:e:r:f:',
             ['emissions=', 'ratio=', 'folder='])
     except GetoptError:
-        sys.exit(help_msg)
-
-    if len(opts) < 3:
-        sys.exit(help_msg)
+        print(help_msg)
+        return None
 
     args = {}
     args['folder'] = None
     for opt, arg in opts:
         if opt == '-h':
-            sys.exit(help)
+            print(help_msg)
+            return None
         if opt in ('-e', '--emissions'):
-            if arg not in options['emissions']:
-                _fail(arg, 'emissions', options['emissions'])
             args['emissions'] = arg
         if opt in ('-r', '--ratio'):
-            if arg not in options['ratio']:
-                _fail(arg, 'ratio', options['ratio'])
             args['ratio'] = arg
         if opt in ('-f', '--folder'):
             args['folder'] = arg
 
-    if len(args) < 3:
-        sys.exit(help)
+    if 'emissions' not in args:
+        print(help_msg)
+        return None
 
-    return args
+    if args['emissions'] == 'hansel2020':
+        args['ratio'] = 'hansel2020'
+
+    if args['emissions'] not in options['emissions']:
+        _fail(args['emissions'], 'emissions', options['emissions'])
+    elif (args['emissions'] != 'hansel2020') and \
+        ('ratio' in args) and \
+            (args['ratio'] not in options['ratio']):
+        _fail(args['ratio'], 'ratio', options['ratio'])
+    elif ('ratio' not in args) or \
+            ((args['emissions'] != 'hansel2020') and (args['folder'] is None)):
+        print(help_msg)
+    else:
+        return args
+
+    return None

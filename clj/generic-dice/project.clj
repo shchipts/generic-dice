@@ -1,5 +1,5 @@
 (defproject org.clojars.shchipts/generic-dice "0.1.0-SNAPSHOT"
-  :description "Generic DICE simulations (economic module)"
+  :description "Generic DICE simulations: economic module"
   :url "https://github.com/shchipts/generic-dice"
   :scm {:name "git"
         :url "https://github.com/shchipts/generic-dice"

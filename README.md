@@ -2,7 +2,7 @@
 
 Contains simulation and visualization routines for generic DICE model
 
-* `clj/generic-dice`: performs simulations from generic DICE model (economic module)
+* `clj/generic-dice`: performs economy simulations from generic DICE model (economic module)
 
 ## License
 
