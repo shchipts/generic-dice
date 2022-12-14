@@ -1,6 +1,6 @@
 # generic-dice
 
-Performs simulations from generic DICE model (economic module)
+Performs simulations from generic DICE model [economy module]
 
 ## Install
 
