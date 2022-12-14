@@ -67,7 +67,7 @@ def read_other_rf_ratio(resource, ssp, ratio):
 
 def write_output(args, variable, header, par_ids, data):
     """Write temperature pathways into csv file."""
-    folder = os.path.join('bin', 'scenario ' + args['emissions'])
+    folder = os.path.join('climate', 'scenario ' + args['emissions'])
     if not os.path.exists(folder):
         os.makedirs(folder)
 
