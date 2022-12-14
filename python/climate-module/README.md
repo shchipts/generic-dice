@@ -55,6 +55,10 @@ $ pip install -i https://test.pypi.org/simple/ dice-climate-simulator
 https://doi.org/10.1038/s41558-020-0833-x
 ```
 
+## Documentation
+
+* [API docs](https://shchipts.github.io/generic-dice/)
+
 ## License
 
 Copyright © 2022 International Institute for Applied Systems Analysis
