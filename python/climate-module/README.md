@@ -6,13 +6,13 @@ Simulation routines for generic DICE model: climate module
 
 The generic DICE climate module includes:
   * *python implementation of climate module from Hansel et al. (2020)*
-  * *dynamic non-CO_2 radiative forcings per SSP scenario*
+  * *dynamic non-CO2 radiative forcings per SSP scenario*
 
 
 
 Simulation routines include:
-  * temperature pathways for given SSP(x) net CO_2 emissions (FFI + AFOLU)
-  * concentration pathways for given SSP(x) net CO_2 emissions (FFI + AFOLU)
+  * temperature pathways for given SSP(x) net CO2 emissions (FFI & AFOLU)
+  * concentration pathways for given SSP(x) net CO2 emissions (FFI & AFOLU)
 
 ## Install
 
@@ -34,7 +34,7 @@ $ pip install -i https://test.pypi.org/simple/ dice-climate-simulator
 
 ### Simulation examples
 
-  * generate climate pathways for CO_2 emissions in SSP2 scenario
+  * generate climate pathways for CO2 emissions in SSP2 scenario
   ```
   dice-climate-simulator -e SSP2 -r avg -f net-emissions-folder
   ```
@@ -45,7 +45,7 @@ $ pip install -i https://test.pypi.org/simple/ dice-climate-simulator
   ```
   dice-climate-simulator -e hansel2020
   ```
-  results saved to scenario climate/hansel2020/temperature change (other_rf avg).csv
+  results saved to climate/hansel2020/temperature change (other_rf avg).csv
   and climate/scenario hansel2020/concentration (other_rf avg).csv
 
 ## References
