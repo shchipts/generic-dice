@@ -7,7 +7,7 @@
 # You must not remove this notice, or any other, from this software.
 [project]
 name = "dice-climate-simulator"
-version = "0.1.0"
+version = "0.2.0"
 description = "Generic DICE simulations: climate module"
 readme = "README.md"
 requires-python = ">=3.8"
@@ -16,7 +16,7 @@ authors = [
   {name = "Anna Shchiptsova", email = "shchipts@iiasa.ac.at" }
 ]
 classifiers = [
-  "Development Status :: 3 - Alpha",
+  "Development Status :: 5 - Production/Stable",
   "Intended Audience :: Science/Research",
   "Topic :: Scientific/Engineering :: Physics",
   "License :: OSI Approved :: MIT License",
