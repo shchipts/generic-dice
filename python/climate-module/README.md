@@ -1,5 +1,7 @@
 # climate-module
 
+[![](https://img.shields.io/pypi/v/badge.svg?maxAge=3600)](https://pypi.org/project/dice-climate-simulator/)
+
 Simulation routines for generic DICE model: climate module
 
 
@@ -17,7 +19,7 @@ Simulation routines include:
 ## Install
 
 ```cmd
-$ pip install -i https://test.pypi.org/simple/ dice-climate-simulator
+$ pip install dice-climate-simulator
 ```
 
 ## Usage
