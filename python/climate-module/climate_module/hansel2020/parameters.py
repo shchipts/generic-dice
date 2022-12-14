@@ -7,21 +7,9 @@
 # You must not remove this notice, or any other, from this software.
 """Climate module parameters.
 
-Climate module parameters include initial values (Hansel et al. 2020; DICE2016),
-parameters of carbon cycle (Smith et al. 2018; Hansel et al. 2020) and
-parameters of energy balance model (Hansel et al. 2020).
-
-References
-----------
-.. [1] Hansel, M., Drupp, M., Johansson, D., Nesje, F., Azar, C., Freeman, M.,
-    Groom, B., & Sterner, T. (2020). Climate Economics Support for the UN
-    Climate Targets. Nature Climate Change, 10: 781-789.
-    https://doi.org/10.1038/s41558-020-0833-x
-.. [2] Smith, C., Millar, R., Nicholls, Z., Allen, M., Forster, P., Leach, N.,
-    Passerello, G., & Regayre, L. (2018). FAIR - Finite Amplitude Impulse
-    Response Model (multi-forcing version).	In Geoscientific Model Development
-    (v1.3.2). Zenodo. https://doi.org/10.5281/zenodo.1247898
-
+Climate module parameters include initial values (Hansel et al. 2020;
+DICE2016), parameters of carbon cycle (Smith et al. 2018; Hansel et al. 2020)
+and parameters of energy balance model (Hansel et al. 2020).
 """
 
 __author__ = "Anna Shchiptsova"
@@ -38,12 +26,12 @@ DT = 5
 #: Initial cumulative CO2 emissions (GtCO2).
 ECUM0 = 400 + 197
 
-#: Initial atmospheric temperature change (°C from 1900)
-#: (adjusted to only include athropogenic forcing).
+#: Initial atmospheric temperature change (°C from 1900);
+#: adjusted to only include athropogenic forcing.
 TAT0 = 1.243
 
-#: Initial lower stratum temperature change (°C from 1900)
-#: (adjusted to only include athropogenic forcing).
+#: Initial lower stratum temperature change (°C from 1900);
+#: adjusted to only include athropogenic forcing.
 TLO0 = 0.324
 
 #: Carbon cycle:

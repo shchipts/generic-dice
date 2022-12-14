@@ -13,7 +13,6 @@ checkouts/
 *results/
 
 # python
-python/climate-module/docs
 dist/
 *.egg-info/
 

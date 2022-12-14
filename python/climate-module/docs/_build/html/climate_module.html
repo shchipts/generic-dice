@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>climate_module package &mdash; dice-climate-simulator 0.1.6 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="climate_module.hansel2020 package" href="climate_module.hansel2020.html" />
+    <link rel="prev" title="climate_module" href="modules.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> dice-climate-simulator
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">climate_module</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">climate_module package</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#subpackages">Subpackages</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="climate_module.hansel2020.html">climate_module.hansel2020 package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="climate_module.resources.html">climate_module.resources package</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#submodules">Submodules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-climate_module.core">climate_module.core module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#climate_module.core.simulate_temperature"><code class="docutils literal notranslate"><span class="pre">simulate_temperature()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-climate_module.options">climate_module.options module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#climate_module.options.parse"><code class="docutils literal notranslate"><span class="pre">parse()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-climate_module.provider">climate_module.provider module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#climate_module.provider.read_emissions"><code class="docutils literal notranslate"><span class="pre">read_emissions()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#climate_module.provider.read_other_rf_ratio"><code class="docutils literal notranslate"><span class="pre">read_other_rf_ratio()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#climate_module.provider.write_output"><code class="docutils literal notranslate"><span class="pre">write_output()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-climate_module">Module contents</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#climate_module.main"><code class="docutils literal notranslate"><span class="pre">main()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">dice-climate-simulator</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a></li>
+          <li class="breadcrumb-item"><a href="modules.html">climate_module</a></li>
+      <li class="breadcrumb-item active">climate_module package</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/climate_module.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="climate-module-package">
+<h1>climate_module package<a class="headerlink" href="#climate-module-package" title="Permalink to this heading"></a></h1>
+<section id="subpackages">
+<h2>Subpackages<a class="headerlink" href="#subpackages" title="Permalink to this heading"></a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="climate_module.hansel2020.html">climate_module.hansel2020 package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="climate_module.hansel2020.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="climate_module.hansel2020.html#module-climate_module.hansel2020.inputs">climate_module.hansel2020.inputs module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="climate_module.hansel2020.html#climate_module.hansel2020.inputs.emissions_ffi_co2"><code class="docutils literal notranslate"><span class="pre">emissions_ffi_co2</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="climate_module.hansel2020.html#climate_module.hansel2020.inputs.emissions_land_use_co2"><code class="docutils literal notranslate"><span class="pre">emissions_land_use_co2()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="climate_module.hansel2020.html#climate_module.hansel2020.inputs.radiative_forcing_non_co2"><code class="docutils literal notranslate"><span class="pre">radiative_forcing_non_co2</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="climate_module.hansel2020.html#module-climate_module.hansel2020.model">climate_module.hansel2020.model module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="climate_module.hansel2020.html#climate_module.hansel2020.model.climate_module"><code class="docutils literal notranslate"><span class="pre">climate_module()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="climate_module.hansel2020.html#module-climate_module.hansel2020.parameters">climate_module.hansel2020.parameters module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="climate_module.hansel2020.html#climate_module.hansel2020.parameters.A"><code class="docutils literal notranslate"><span class="pre">A</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="climate_module.hansel2020.html#climate_module.hansel2020.parameters.CARBON_BOXES0"><code class="docutils literal notranslate"><span class="pre">CARBON_BOXES0</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="climate_module.hansel2020.html#climate_module.hansel2020.parameters.C_CO2_EQ"><code class="docutils literal notranslate"><span class="pre">C_CO2_EQ</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="climate_module.hansel2020.html#climate_module.hansel2020.parameters.DT"><code class="docutils literal notranslate"><span class="pre">DT</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="climate_module.hansel2020.html#climate_module.hansel2020.parameters.ECUM0"><code class="docutils literal notranslate"><span class="pre">ECUM0</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="climate_module.hansel2020.html#climate_module.hansel2020.parameters.KAPPA"><code class="docutils literal notranslate"><span class="pre">KAPPA</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="climate_module.hansel2020.html#climate_module.hansel2020.parameters.NU"><code class="docutils literal notranslate"><span class="pre">NU</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="climate_module.hansel2020.html#climate_module.hansel2020.parameters.R0"><code class="docutils literal notranslate"><span class="pre">R0</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="climate_module.hansel2020.html#climate_module.hansel2020.parameters.RC"><code class="docutils literal notranslate"><span class="pre">RC</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="climate_module.hansel2020.html#climate_module.hansel2020.parameters.RT"><code class="docutils literal notranslate"><span class="pre">RT</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="climate_module.hansel2020.html#climate_module.hansel2020.parameters.TAT0"><code class="docutils literal notranslate"><span class="pre">TAT0</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="climate_module.hansel2020.html#climate_module.hansel2020.parameters.TAU"><code class="docutils literal notranslate"><span class="pre">TAU</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="climate_module.hansel2020.html#climate_module.hansel2020.parameters.TLO0"><code class="docutils literal notranslate"><span class="pre">TLO0</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="climate_module.hansel2020.html#climate_module.hansel2020.parameters.XI1"><code class="docutils literal notranslate"><span class="pre">XI1</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="climate_module.hansel2020.html#climate_module.hansel2020.parameters.XI2"><code class="docutils literal notranslate"><span class="pre">XI2</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="climate_module.hansel2020.html#climate_module.hansel2020.parameters.XI3"><code class="docutils literal notranslate"><span class="pre">XI3</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="climate_module.hansel2020.html#climate_module.hansel2020.parameters.XI4"><code class="docutils literal notranslate"><span class="pre">XI4</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="climate_module.hansel2020.html#module-climate_module.hansel2020">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="climate_module.resources.html">climate_module.resources package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="climate_module.resources.html#module-climate_module.resources">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this heading"></a></h2>
+</section>
+<section id="module-climate_module.core">
+<span id="climate-module-core-module"></span><h2>climate_module.core module<a class="headerlink" href="#module-climate_module.core" title="Permalink to this heading"></a></h2>
+<p>Climate module (Hansel et al.) for DICE-like simulation model.</p>
+<p class="rubric">References</p>
+<dl class="footnote brackets">
+<dt class="label" id="id1"><span class="brackets">1</span></dt>
+<dd><p>Hansel, M., Drupp, M., Johansson, D., Nesje, F., Azar, C., Freeman, M.,
+Groom, B., &amp; Sterner, T. (2020). Climate Economics Support for the UN
+Climate Targets. Nature Climate Change, 10: 781-789.
+<a class="reference external" href="https://doi.org/10.1038/s41558-020-0833-x">https://doi.org/10.1038/s41558-020-0833-x</a></p>
+</dd>
+<dt class="label" id="id2"><span class="brackets">2</span></dt>
+<dd><p>[SSP Database] <a class="reference external" href="https://tntcat.iiasa.ac.at/SspDb/">https://tntcat.iiasa.ac.at/SspDb/</a></p>
+</dd>
+</dl>
+<dl class="py function">
+<dt class="sig sig-object py" id="climate_module.core.simulate_temperature">
+<span class="sig-prename descclassname"><span class="pre">climate_module.core.</span></span><span class="sig-name descname"><span class="pre">simulate_temperature</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">argv</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span></span></span><a class="reference internal" href="_modules/climate_module/core.html#simulate_temperature"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#climate_module.core.simulate_temperature" title="Permalink to this definition"></a></dt>
+<dd><p>Perform climate simulations from generic DICE model.</p>
+</dd></dl>
+
+</section>
+<section id="module-climate_module.options">
+<span id="climate-module-options-module"></span><h2>climate_module.options module<a class="headerlink" href="#module-climate_module.options" title="Permalink to this heading"></a></h2>
+<p>Execution command checker.</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="climate_module.options.parse">
+<span class="sig-prename descclassname"><span class="pre">climate_module.options.</span></span><span class="sig-name descname"><span class="pre">parse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">argv</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">options</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/climate_module/options.html#parse"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#climate_module.options.parse" title="Permalink to this definition"></a></dt>
+<dd><p>Parse command line arguments.</p>
+</dd></dl>
+
+</section>
+<section id="module-climate_module.provider">
+<span id="climate-module-provider-module"></span><h2>climate_module.provider module<a class="headerlink" href="#module-climate_module.provider" title="Permalink to this heading"></a></h2>
+<p>Forward and backward processing of I/O data.</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="climate_module.provider.read_emissions">
+<span class="sig-prename descclassname"><span class="pre">climate_module.provider.</span></span><span class="sig-name descname"><span class="pre">read_emissions</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">resource</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">in_resources=False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">transform=&lt;function</span> <span class="pre">&lt;lambda&gt;&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_pars=6</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/climate_module/provider.html#read_emissions"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#climate_module.provider.read_emissions" title="Permalink to this definition"></a></dt>
+<dd><p>Read net emissions pathways from csv file.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="climate_module.provider.read_other_rf_ratio">
+<span class="sig-prename descclassname"><span class="pre">climate_module.provider.</span></span><span class="sig-name descname"><span class="pre">read_other_rf_ratio</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">resource</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ssp</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ratio</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/climate_module/provider.html#read_other_rf_ratio"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#climate_module.provider.read_other_rf_ratio" title="Permalink to this definition"></a></dt>
+<dd><p>Read radiative forcing from non-CO2 curves from csv resources file.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="climate_module.provider.write_output">
+<span class="sig-prename descclassname"><span class="pre">climate_module.provider.</span></span><span class="sig-name descname"><span class="pre">write_output</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">variable</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">header</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">par_ids</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/climate_module/provider.html#write_output"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#climate_module.provider.write_output" title="Permalink to this definition"></a></dt>
+<dd><p>Write temperature pathways into csv file.</p>
+</dd></dl>
+
+</section>
+<section id="module-climate_module">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-climate_module" title="Permalink to this heading"></a></h2>
+<p>Command line operations for climate module.</p>
+<p class="rubric">References</p>
+<dl class="footnote brackets">
+<dt class="label" id="id3"><span class="brackets">1</span></dt>
+<dd><p>Hansel, M., Drupp, M., Johansson, D., Nesje, F., Azar, C., Freeman, M.,
+Groom, B., &amp; Sterner, T. (2020). Climate Economics Support for the UN
+Climate Targets. Nature Climate Change, 10: 781-789.
+<a class="reference external" href="https://doi.org/10.1038/s41558-020-0833-x">https://doi.org/10.1038/s41558-020-0833-x</a></p>
+</dd>
+<dt class="label" id="id4"><span class="brackets">2</span></dt>
+<dd><p>[SSP Database] <a class="reference external" href="https://tntcat.iiasa.ac.at/SspDb/">https://tntcat.iiasa.ac.at/SspDb/</a></p>
+</dd>
+</dl>
+<dl class="py function">
+<dt class="sig sig-object py" id="climate_module.main">
+<span class="sig-prename descclassname"><span class="pre">climate_module.</span></span><span class="sig-name descname"><span class="pre">main</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/climate_module.html#main"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#climate_module.main" title="Permalink to this definition"></a></dt>
+<dd><p>Entry point for the application script.</p>
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="modules.html" class="btn btn-neutral float-left" title="climate_module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="climate_module.hansel2020.html" class="btn btn-neutral float-right" title="climate_module.hansel2020 package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, International Institute for Applied Systems Analysis.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

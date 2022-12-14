@@ -13,6 +13,7 @@ References
     Groom, B., & Sterner, T. (2020). Climate Economics Support for the UN
     Climate Targets. Nature Climate Change, 10: 781-789.
     https://doi.org/10.1038/s41558-020-0833-x
+.. [2] [SSP Database] https://tntcat.iiasa.ac.at/SspDb/
 
 """
 

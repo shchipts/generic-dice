@@ -13,6 +13,15 @@ References
     Groom, B., & Sterner, T. (2020). Climate Economics Support for the UN
     Climate Targets. Nature Climate Change, 10: 781-789.
     https://doi.org/10.1038/s41558-020-0833-x
+.. [2] Smith, C. J., Forster, P. M.,  Allen, M., Leach, N., Millar, R. J.,
+    Passerello, G. A., & Regayre, L. A. (2018). FAIR v1.3: a Simple Emissions-
+    Based Impulse Response and Carbon Cycle Model. Geoscientific Model
+    Development, 11: 2273–2297. https://doi.org/10.5194/gmd-11-2273-2018
+.. [3] Geoffroy, O., Saint-Martin, D., Olivié, D. J. L., Voldoire, A.,
+    Bellon, G., & Tytéca, S. (2013). Transient Climate Response in a Two-Layer
+    Energy-Balance Model. Part I: Analytical Solution and Parameter Calibration
+    Using CMIP5 AOGCM Experiments. Journal of Climate, 26: 1841–1857.
+    https://doi.org/10.1175/JCLI-D-12-00195.1
 
 """
 
