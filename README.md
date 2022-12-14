@@ -1,5 +1,7 @@
 # generic-dice
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.7436477.svg)](https://doi.org/10.5281/zenodo.7436477)
+
 Contains simulation routines for generic DICE model
 
 * `clj/generic-dice`: performs economy simulations from generic DICE model [economy module]
