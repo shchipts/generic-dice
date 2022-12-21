@@ -1,6 +1,6 @@
 # generic-dice
 
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.7436477.svg)](https://doi.org/10.5281/zenodo.7436477)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.7436476.svg)](https://doi.org/10.5281/zenodo.7436476)
 
 Contains simulation routines for generic DICE model
 
